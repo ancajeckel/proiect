@@ -1,0 +1,30 @@
+﻿@model IList<LibraryWebApp.Models.Author>
+
+<div class="jumbotron">
+    <h1>Welcome to our Library</h1>
+</div>
+
+<div>
+    Number of authors: @Model.Count <br /><br />
+
+    <table style="width:100%">
+        <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>BirthDate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var author in Model)
+            {
+                <tr>
+                    <td>@author.FirstName</td>
+                    <td>@author.LastName</td>
+                    <td>@author.BirthDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

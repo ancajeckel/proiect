@@ -1,6 +1,6 @@
------------------------------------------
---- script to create Library database ---
------------------------------------------
+-------------------------------------------------
+--- script to create LibraryDatabase database ---
+-------------------------------------------------
 --drop fk
 alter table Book drop constraint fk_book_publisherid;
 go
