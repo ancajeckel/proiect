@@ -25,6 +25,7 @@ namespace LibraryWebApp.BusinessLogic
 
         IList<Author> IAuthorManager.GetAll()
         {
+
             return db.Authors.Select(a => a).ToList();
         }
 

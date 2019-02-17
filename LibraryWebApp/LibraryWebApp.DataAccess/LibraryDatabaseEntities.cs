@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using LibraryWebApp.Models;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace LibraryWebApp.DataAccess
 {

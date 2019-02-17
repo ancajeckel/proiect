@@ -21,7 +21,7 @@
                 <tr>
                     <td>@author.FirstName</td>
                     <td>@author.LastName</td>
-                    <td>@author.BirthDate</td>
+                    <td>@Convert.ToDateTime(author.BirthDate).ToString("dd.MM.yyyy")</td>
                 </tr>
             }
         </tbody>
