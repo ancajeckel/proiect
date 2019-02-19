@@ -20,6 +20,8 @@ namespace LibraryWebApp.Controllers
             authorManager = new SqlAuthorManager();
         }
         // test Ioana
+
+        // test Ioana
         public ActionResult Index()
         {
             //test with ado.net->ok
