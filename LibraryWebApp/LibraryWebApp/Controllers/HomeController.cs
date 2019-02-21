@@ -12,18 +12,10 @@ namespace LibraryWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private IAuthorManager authorManager;
-
-        public HomeController()
-        {
-            authorManager = new SqlAuthorManager();
-        }
 
         public ActionResult Index()
         {
-            var authors = authorManager.GetAll();
-
-            return View(authors);
+            return View();
         }
 
         public ActionResult About()

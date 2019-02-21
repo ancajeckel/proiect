@@ -1,30 +1,20 @@
-﻿@model IList<LibraryWebApp.Models.Author>
-
-<div class="jumbotron">
-    <h1>Welcome to our Library</h1>
-</div>
+﻿
 
 <div>
-    Number of authors: @Model.Count <br /><br />
-
-    <table style="width:100%">
-        <thead>
-            <tr>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>BirthDate</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var author in Model)
-            {
-                <tr>
-                    <td>@author.FirstName</td>
-                    <td>@author.LastName</td>
-                    <td>@Convert.ToDateTime(author.BirthDate).ToString("dd.MM.yyyy")</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <br/>
+    <h2>Nou in biblioteca:</h2>
 </div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="row mt-3"><img src="~/Content/images/constelatia-fenomenelor-vitale.jpg" class="img-rounded" alt="Constelatia fenomenelor vitale" width="80%" height="80%"></div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row mt-3"><img src="~/Content/images/toata-lumina-pe-care-nu-o-putem-vedea.jpg" class="img-rounded" alt="Toata lumina pe care nu o putem vedea" width="80%" height="80%"></div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row mt-3"><img src="~/Content/images/singuratea-numerelor-prime.jpg" class="img-rounded" alt="Singuratatea numerelor prime" width="80%" height="80%"></div>
+        </div>
+    </div>
+</div>

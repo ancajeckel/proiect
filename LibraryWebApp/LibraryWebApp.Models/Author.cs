@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace LibraryWebApp.Models
 {
@@ -17,9 +18,11 @@ namespace LibraryWebApp.Models
         public int AuthorId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> BirthDate { get; set; }
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<BookAuthor> BookAuthors { get; set; }
+        public virtual ICollection<BookAuthor> BookAuthors { get; set; }
     }
 }

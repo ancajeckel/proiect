@@ -24,6 +24,12 @@ namespace LibraryWebApp
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Author", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Book",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Book", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }
