@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using LibraryWebApp.Models;
 using LibraryWebApp.Interfaces;
 using LibraryWebApp.BusinessLogic;
 
 namespace LibraryWebApp.Controllers
 {
-    public class HomeController : Controller
+    public class AuthorController : Controller
     {
         private IAuthorManager authorManager;
 
-        public HomeController()
+        public AuthorController()
         {
             authorManager = new SqlAuthorManager();
         }
@@ -25,20 +24,5 @@ namespace LibraryWebApp.Controllers
 
             return View(authors);
         }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
     }
 }
