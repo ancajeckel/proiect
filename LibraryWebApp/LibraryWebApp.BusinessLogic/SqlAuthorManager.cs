@@ -20,13 +20,13 @@ namespace LibraryWebApp.BusinessLogic
 
         Author IAuthorManager.Get(int id)
         {
-            throw new NotImplementedException();
+            return db.Authors.First(x => x.AuthorId == id);
         }
 
         IList<Author> IAuthorManager.GetAll()
         {
 
-            return db.Authors.Select(a => a).ToList();
+            return db.Authors.Where(a => true).ToList();
         }
 
         void IAuthorManager.Save(Author author)
