@@ -17,7 +17,17 @@ namespace LibraryWebApp.DataAccess
         {
         }
 
-        //test branch
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Publisher>()
+                .HasMany(p => p.Books);
+
+            modelBuilder.Entity<Book>()
+                .HasRequired(b => b.Publisher)
+                .WithMany(b => b.Books)
+                .HasForeignKey(b => b.PublisherId);
+        }
+
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Book> Books { get; set; }
