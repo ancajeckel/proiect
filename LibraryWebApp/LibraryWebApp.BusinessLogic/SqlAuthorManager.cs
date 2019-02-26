@@ -29,9 +29,10 @@ namespace LibraryWebApp.BusinessLogic
             return db.Authors.Where(a => true).ToList();
         }
 
-        void IAuthorManager.Save(Author author)
+        public void Save(Author author)
         {
-            throw new NotImplementedException();
+            db.Authors.Add(author);
+            db.SaveChanges();
         }
     }
 }
