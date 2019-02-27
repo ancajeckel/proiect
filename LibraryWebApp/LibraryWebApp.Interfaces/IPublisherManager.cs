@@ -7,12 +7,12 @@ using LibraryWebApp.Models;
 
 namespace LibraryWebApp.Interfaces
 {
-    public interface IBookManager
+    public interface IPublisherManager
     {
-        void Save(Book book);
+        void Save(Publisher publisher);
 
-        Book Get(int? id);
+        Publisher Get(int? id);
 
-        IList<Book> GetAll();
+        IList<Publisher> GetAll();
     }
 }

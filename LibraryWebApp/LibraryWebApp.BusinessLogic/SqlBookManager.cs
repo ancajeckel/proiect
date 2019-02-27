@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using LibraryWebApp.Interfaces;
 using LibraryWebApp.Models;
 using LibraryWebApp.DataAccess;
+using System.Data.Entity;
 
 namespace LibraryWebApp.BusinessLogic
 {
@@ -18,9 +19,18 @@ namespace LibraryWebApp.BusinessLogic
             db = new LibraryDatabaseEntities();
         }
 
-        Book IBookManager.Get(int id)
+        public LibraryDatabaseEntities getContext()
         {
-            throw new NotImplementedException();
+            return db;
+        }
+
+        Book IBookManager.Get(int? id)
+        {
+            if (id != null)
+            {
+                return db.Books.First(b => b.BookId == id);
+            }
+            return null;
         }
 
         IList<Book> IBookManager.GetAll()
@@ -30,7 +40,25 @@ namespace LibraryWebApp.BusinessLogic
 
         void IBookManager.Save(Book book)
         {
-            throw new NotImplementedException();
+            if (book.BookId <= 0)
+            {
+                db.Books.Add(book);
+            }
+            else
+            {
+                if (book.PublisherId != null)
+                {
+                    //needed this way instead of getting via Publisher.Get() to be in same context
+                    var bookPublisher = db.Publishers.First(p => p.PublisherId == book.PublisherId);
+                    if (bookPublisher != null)
+                    {
+                        book.Publisher = bookPublisher;
+                    }
+                }
+                db.Entry(book).State = EntityState.Modified;
+            }
+            db.Entry<Publisher>(book.Publisher).State = EntityState.Detached;
+            db.SaveChanges();
         }
 
     }

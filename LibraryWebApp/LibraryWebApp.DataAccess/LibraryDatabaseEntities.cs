@@ -26,6 +26,11 @@ namespace LibraryWebApp.DataAccess
                 .HasRequired(b => b.Publisher)
                 .WithMany(b => b.Books)
                 .HasForeignKey(b => b.PublisherId);
+
+            modelBuilder.Entity<Book>()
+                .HasKey(b => b.BookId)
+                .Property(b => b.BookId);
+
         }
 
         public virtual DbSet<Address> Addresses { get; set; }
