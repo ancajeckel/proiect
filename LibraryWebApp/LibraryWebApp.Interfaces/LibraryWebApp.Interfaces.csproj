@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="IAuthorManager.cs" />
     <Compile Include="IBookManager.cs" />
+    <Compile Include="IPublisherManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
