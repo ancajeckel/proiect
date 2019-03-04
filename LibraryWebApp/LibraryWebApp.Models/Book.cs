@@ -23,11 +23,19 @@ namespace LibraryWebApp.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BookId { get; set; }
 
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Book title is required")]
         public string Title { get; set; }
-        public Nullable<int> PublisherId { get; set; }
-        public Nullable<int> Year { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Publisher of a book is required")]
+        public int PublisherId { get; set; }
+
+        [Required]
+        [Range(1000,2100,ErrorMessage = "Here should be given a valid year")]
+        public int Year { get; set; }
+
         public Nullable<decimal> Price { get; set; }
 
+        [ForeignKey("PublisherId")]
         public virtual Publisher Publisher { get; set; }
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookAuthor> BookAuthors { get; set; }
