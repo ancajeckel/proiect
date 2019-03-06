@@ -14,5 +14,7 @@ namespace LibraryWebApp.Interfaces
         Book Get(int? id);
 
         IList<Book> GetAll();
+
+        void Delete(Book book);
     }
 }

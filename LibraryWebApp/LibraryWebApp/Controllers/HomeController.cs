@@ -32,5 +32,16 @@ namespace LibraryWebApp.Controllers
             return View();
         }
 
+        [HandleError]
+        public ActionResult NotFound()
+        {
+            return View();
+        }
+
+        [HandleError]
+        public ActionResult Error()
+        {
+            return View();
+        }
     }
 }

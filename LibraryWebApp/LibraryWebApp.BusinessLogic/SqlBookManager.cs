@@ -20,6 +20,12 @@ namespace LibraryWebApp.BusinessLogic
             db = new LibraryDatabaseEntities();
         }
 
+        public void Delete(Book book)
+        {
+            db.Books.Remove(book);
+            db.SaveChanges();
+        }
+
         public LibraryDatabaseEntities getContext()
         {
             return db;
@@ -41,11 +47,7 @@ namespace LibraryWebApp.BusinessLogic
 
         void IBookManager.Save(Book book)
         {
-            if (book.BookId <= 0)
-            {
-                db.Books.Add(book);
-            }
-            else
+            if (book != null)
             {
                 if (book.PublisherId != null)
                 {
@@ -56,11 +58,17 @@ namespace LibraryWebApp.BusinessLogic
                         book.Publisher = bookPublisher;
                     }
                 }
+            }
+            if (book.BookId <= 0)
+            {
+                db.Books.Add(book);
+            }
+            else
+            {
                 db.Entry(book).State = EntityState.Modified;
             }
             db.Entry<Publisher>(book.Publisher).State = EntityState.Detached;
             db.SaveChanges();
         }
-
     }
 }

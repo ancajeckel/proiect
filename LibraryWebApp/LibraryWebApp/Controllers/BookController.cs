@@ -36,7 +36,7 @@ namespace LibraryWebApp.Controllers
             return View(book);
         }
 
-        public  void SetSessionPublishers()
+        public void SetSessionPublishers()
         {
             var publishers_list = publisherManager.GetAll();
 
@@ -65,11 +65,18 @@ namespace LibraryWebApp.Controllers
             return View(book);
         }
 
-        // POST /book/addedit + request body
+        // POST /book/create + request body 
+        //[Bind(Exclude = "BookId")] for creating new book
         [HttpPost]
         public ActionResult CreateEdit(Book book)
         {
             SetSessionPublishers();
+
+            //remove BookId from binding when inserting new because otherwise ModelState = invalid
+            if (book.BookId <= 0)
+            {
+                ModelState.Remove("BookId");
+            }
 
             if (ModelState.IsValid)
             {
@@ -81,7 +88,28 @@ namespace LibraryWebApp.Controllers
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
             }
 
+            return View("CreateEdit", book);
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            SetSessionPublishers();
+
+            if (id == 0) return RedirectToAction("Index", "Book");
+
+            var book = bookManager.Get(id);
+
             return View(book);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var book = bookManager.Get(id);
+            bookManager.Delete(book);
+            return RedirectToAction("Index", "Book");
         }
     }
 }
