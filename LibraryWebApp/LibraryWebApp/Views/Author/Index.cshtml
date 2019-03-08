@@ -8,7 +8,7 @@
 <h2>Index of authors</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Add")
 </p>
 <table class="table">
     <tr>
@@ -36,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.BirthDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AuthorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AuthorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AuthorId })
+            @Html.ActionLink("Edit", "Edit", new { id = item.AuthorId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.AuthorId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.AuthorId })
         </td>
     </tr>
 }

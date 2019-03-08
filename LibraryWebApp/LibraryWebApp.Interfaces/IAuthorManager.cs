@@ -14,5 +14,7 @@ namespace LibraryWebApp.Interfaces
         Author Get(int id);
 
         IList<Author> GetAll();
+
+        void Delete(Author author);
     }
 }

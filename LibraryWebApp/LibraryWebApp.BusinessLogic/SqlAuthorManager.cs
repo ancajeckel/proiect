@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using LibraryWebApp.Interfaces;
 using LibraryWebApp.Models;
 using LibraryWebApp.DataAccess;
+using System.Data.Entity;
 
 namespace LibraryWebApp.BusinessLogic
 {
@@ -31,7 +32,28 @@ namespace LibraryWebApp.BusinessLogic
 
         public void Save(Author author)
         {
-            db.Authors.Add(author);
+            if (author.AuthorId <= 0)
+            {
+                db.Authors.Add(author);
+            }
+            else
+            {
+                db.Entry(author).State = EntityState.Modified;
+            }
+            db.SaveChanges();
+        }
+
+        public void Delete(Author author)
+        {
+            /*var auth = db.Entry(author);
+            if (auth.State == EntityState.Detached)
+                db.Authors.Attach(author);*/
+
+            //db.Entry(author).State = EntityState.Deleted;
+
+            //db.Authors.Attach(author);
+
+            db.Authors.Remove(author);
             db.SaveChanges();
         }
     }
