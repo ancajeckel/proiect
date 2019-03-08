@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using LibraryWebApp.Models;
 using LibraryWebApp.Interfaces;
 using LibraryWebApp.BusinessLogic;
+using System.Data.Entity;
 
 namespace LibraryWebApp.Controllers
 {
@@ -53,6 +54,51 @@ namespace LibraryWebApp.Controllers
             {
                 authorManager.Save(author);
                 return Redirect("Index");
+            }
+            return View(author);
+        }
+
+        public ActionResult Delete(int id)
+        {
+
+            if (id == 0) return RedirectToAction("Index", "Author");
+
+            var author = authorManager.Get(id);
+
+            //Views/Author/Delete.cshtml
+            return View(author);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            /*if (ModelState.IsValid)
+            {*/
+                var author = authorManager.Get(id);
+                authorManager.Delete(author);
+                 return RedirectToAction("Index", "Author");
+            /*}
+            return View();*/
+        }
+
+
+        // GET: /Author/Edit
+        public ActionResult Edit(int id)
+        {
+            var auth = authorManager.Get(id);
+            return View(auth);
+        }
+
+        // POST: /Home/Edit
+
+        [AcceptVerbs(HttpVerbs.Post)]
+
+        public ActionResult Edit(Author author)
+        {
+            if (ModelState.IsValid)
+            {
+                authorManager.Save(author);
+                return RedirectToAction("Index", "Author");
             }
             return View(author);
         }
