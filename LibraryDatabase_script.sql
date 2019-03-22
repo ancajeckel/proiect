@@ -234,11 +234,11 @@ go
 
 
 
-insert into Books (Title, PublisherId, [Year], Price) values ('De veghe in lanul de secara', 1, 2016, 17); --1
+insert into Books (Title, PublisherId, [Year], Price) values ('Constelatia fenomenelor vitale', 1, 2016, 17); --1
 go
-insert into Books (Title, PublisherId, [Year], Price) values ('Fluturi', 2, 2016, 13); --2
+insert into Books (Title, PublisherId, [Year], Price) values ('Toata lumina pe care nu o putem vedea', 2, 2016, 13); --2
 go
-insert into Books (Title, PublisherId, [Year], Price) values ('Proza', 3, 2011, 8); --3
+insert into Books (Title, PublisherId, [Year], Price) values ('Singuratatea numerelor prime', 3, 2011, 8); --3
 go
 insert into Books (Title, PublisherId, [Year], Price) values ('Portretul lui Dorian Grey', 1, 2013, 18); --4
 go
@@ -282,11 +282,11 @@ insert into BookCategories (BookCategoryId, BookId, CategoryId) values (11, 11, 
 go
 
 
-insert into Authors (FirstName, LastName, BirthDate) values ('J.D.', 'Salinger', CONVERT(DATETIME, '1-JAN-1919') ); --1
+insert into Authors (FirstName, LastName, BirthDate) values ('Anthony', 'Marra', CONVERT(DATETIME, '1-JAN-1984') ); --1
 go
-insert into Authors (FirstName, LastName, BirthDate) values ('Irina', 'Binder', CONVERT(DATETIME, '1-JAN-1978') ); --2
+insert into Authors (FirstName, LastName, BirthDate) values ('Anthony', 'Doerr', CONVERT(DATETIME, '27-OCT-1973') ); --2
 go
-insert into Authors (FirstName, LastName, BirthDate) values ('Mihai', 'Eminescu', CONVERT(DATETIME, '15-JAN-1850') ); --3
+insert into Authors (FirstName, LastName, BirthDate) values ('Paolo', 'Giordano', CONVERT(DATETIME, '19-DEC-1982') ); --3
 go
 insert into Authors (FirstName, LastName, BirthDate) values ('Oscar', 'Wilde', CONVERT(DATETIME, '16-OCT-1854') ); --4
 go
