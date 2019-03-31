@@ -152,6 +152,7 @@ create table Members (
 	Gender varchar(10),
 	PhoneNumber varchar(20),
 	EmailAddress varchar(50),
+	Password varchar(100),
 	constraint pk_member primary key clustered (MemberId)
 );
 go
@@ -388,11 +389,11 @@ insert into BookLibrary (BookLibraryId, LibraryId, BookId, Quantity) values (15,
 go
 
 
-insert into Members (FirstName, LastName, PermitNumber, AddressId, Gender, PhoneNumber, EmailAddress)
-	values ('Daniel', 'Ionescu', 'AGX-40194', 2, 'm', '0728406394', 'daniel.popescu@gmail.com'); --1
+insert into Members (FirstName, LastName, PermitNumber, AddressId, Gender, PhoneNumber, EmailAddress, [Password])
+	values ('Daniel', 'Ionescu', 'AGX-40194', 2, 'm', '0728406394', 'daniel.popescu@gmail.com', 'start123'); --1
 go
-insert into Members (FirstName, LastName, PermitNumber, AddressId, Gender, PhoneNumber, EmailAddress)
-	values ('Mihai', 'Popescu', 'BCS-40329', 3, 'm', '0749281504', 'mihai.popescu@yahoo.com'); --2
+insert into Members (FirstName, LastName, PermitNumber, AddressId, Gender, PhoneNumber, EmailAddress, [Password])
+	values ('Mihai', 'Popescu', 'BCS-40329', 3, 'm', '0749281504', 'mihai.popescu@yahoo.com', 'start123'); --2
 go
 
 insert into Requests (RequestedBy, BookId, DateRequested, DateReturned) values (1, 2, CONVERT(DATETIME, '15-MAY-2017'), CONVERT(DATETIME, '21-MAY-2017'));
