@@ -26,26 +26,43 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Publisher.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Year)
-        </td>
-        <td>
-            $@Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "CreateEdit", new { id = item.BookId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "CreateEdit", new { id = item.BookId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<br />
+<nav aria-label="">
+    <ul class="pagination pg-blue">
+        <li class="page-item">
+            <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item active">
+            <a class="page-link">1 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item">
+            <a class="page-link">Next</a>
+        </li>
+    </ul>
+</nav>
+

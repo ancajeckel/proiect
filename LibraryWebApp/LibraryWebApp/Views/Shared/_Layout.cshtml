@@ -22,6 +22,14 @@
                     <li>@Html.ActionLink("Authors", "Index", "Author")</li>
                     <li>@Html.ActionLink("Books", "Index", "Book")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
+                    @if (System.Web.HttpContext.Current.Session["MemberName"]!= null)
+                    {
+                        <li>@Html.ActionLink("My Account", "Details", "Login")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                    }
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
             </div>

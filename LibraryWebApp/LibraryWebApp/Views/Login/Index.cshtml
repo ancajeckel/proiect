@@ -1,0 +1,43 @@
+﻿@model LibraryWebApp.Models.Member
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Login</h2>
+
+<p>
+    @Html.ActionLink("New user?", "Add")
+</p>
+
+<div id="login-div">
+    @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+    {
+    <div>
+        <label class="field-validation-error text-danger">@Html.DisplayFor(m => m.LoginErrorMessage)</label>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.EmailAddress)
+        @Html.TextBoxFor(m => m.EmailAddress, null, new { @class = "form-control", placeholder = "Email", type = "email" })
+        @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "******", type = "password" })
+        @Html.ValidationMessageFor(m => m.Password)
+        <a class="float-right" href="#">Forgot?</a>
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label> <input type="checkbox"> Save password </label>
+        </div>
+    </div> 
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+    </div> 
+    }
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
