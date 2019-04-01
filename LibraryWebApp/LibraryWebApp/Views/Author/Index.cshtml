@@ -10,37 +10,161 @@
 <p>
     @Html.ActionLink("Create New", "Add")
 </p>
-<table class="table">
+<table class="table" id="Authors">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
+            <div style=" overflow:visible; text-align:left; overflow:visible;">
+                <a href="javascript:SortByColIndex(0,&#34;asc&#34;)" style="color:#dcdcdc;">▲</a>
+            </div>
+            <div style=" overflow:visible; overflow:visible;">
+                <a href="javascript:SortByColIndex(0,&#34;desc&#34;)" style="color:#dcdcdc;">▼</a>
+            </div>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            <div style=" overflow:visible; text-align:left; overflow:visible;">
+                <a href="javascript:SortByColIndex(2,&#34;asc&#34;)" style="color:#dcdcdc;">▲</a>
+            </div>
+            <div style=" overflow:visible; overflow:visible;">
+                <a href="javascript:SortByColIndex(2,&#34;desc&#34;)" style="color:#dcdcdc;">▼</a>
+            </div>
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BirthDate)
         </th>
+        <th>
+            <div style=" overflow:visible; text-align:left; overflow:visible;">
+                <a href="javascript:SortByColIndex(4,&#34;asc&#34;)" style="color:#dcdcdc;">▲</a>
+            </div>
+            <div style=" overflow:visible; overflow:visible;">
+                <a href="javascript:SortByColIndex(4,&#34;desc&#34;)" style="color:#dcdcdc;">▼</a>
+            </div>
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.AuthorId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.AuthorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.AuthorId })
-        </td>
+        <th colspan="2"><input class="form-control" id="ss0" type="text" onkeyup="SearchByColIndex(0)" placeholder="Search" aria-label="Search"></th>
+        <th colspan="2"><input class="form-control" id="ss1" type="text" onkeyup="SearchByColIndex(1)" placeholder="Search" aria-label="Search"></th>
+        <th colspan="2"><input class="form-control" id="ss2" type="text" onkeyup="SearchByColIndex(2)" placeholder="Search" aria-label="Search"></th>
+        <th></th>
     </tr>
-}
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td></td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AuthorId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AuthorId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AuthorId })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<br/>
+<nav aria-label="">
+    <ul class="pagination pg-blue">
+        <li class="page-item">
+            <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item active">
+            <a class="page-link">1 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item">
+            <a class="page-link">Next</a>
+        </li>
+    </ul>
+</nav>
+
+<script>
+    function SearchByColIndex(index) {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("ss" + index);
+        filter = input.value.toUpperCase();
+        table = document.getElementById("Authors");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[index];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function SortByColIndex(index, dir) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("Authors");
+        switching = true;
+        var sortBool;
+
+        if (dir == 'asc') {
+            sortBool = false;
+        }
+        else {
+            sortBool = true;
+        }
+
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 2; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("td")[index];
+                y = rows[i + 1].getElementsByTagName("td")[index];
+                //check if the two rows should switch place:
+                if (sortBool) {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                else {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+</script>
