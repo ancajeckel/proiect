@@ -25,4 +25,11 @@ namespace LibraryWebApp.Models
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookAuthor> BookAuthors { get; set; }
     }
+
+    public enum AuthorNat
+    {
+        Roman,
+        Strain
+    }
+
 }
